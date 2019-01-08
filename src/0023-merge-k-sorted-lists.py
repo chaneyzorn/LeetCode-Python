@@ -54,3 +54,33 @@ class Solution(object):
                 low = mid + 1
         lists.insert(low, node)
         return lists
+
+
+class Solution2(object):
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        if not lists:
+            return None
+        k = len(lists)
+        interval = 1
+        while interval < k:
+            for i in range(0, k - interval, interval * 2):
+                lists[i] = self.merge_two(lists[i], lists[i + interval])
+            interval *= 2
+        return lists[0]
+
+    def merge_two(self, l1, l2):
+        curr = dummy = ListNode(0)
+        while l1 and l2:
+            if l1.val < l2.val:
+                curr.next = l1
+                l1 = l1.next
+            else:
+                curr.next = l2
+                l2 = l2.next
+            curr = curr.next
+        curr.next = l1 or l2
+        return dummy.next
