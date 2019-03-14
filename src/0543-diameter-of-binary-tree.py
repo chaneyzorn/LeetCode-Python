@@ -12,15 +12,15 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-        self.diameter = 1
+        self.diameter = 0
 
         def depth(root):
             if not root:
                 return 0
             left = depth(root.left)
             right = depth(root.right)
-            self.diameter = max(self.diameter, left + right + 1)
+            self.diameter = max(self.diameter, left + right)
             return max(left, right) + 1
 
         depth(root)
-        return self.diameter - 1
+        return self.diameter
