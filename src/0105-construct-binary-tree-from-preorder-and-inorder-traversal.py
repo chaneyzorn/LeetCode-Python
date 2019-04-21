@@ -37,8 +37,9 @@ class Solution(object):
     #     """
     #     if not inorder:
     #         return None
-    #     index = inorder.index(preorder[0])
-    #     root = TreeNode(inorder[index])
-    #     root.left = self.buildTree(preorder[1:], inorder[:index])
-    #     root.right = self.buildTree(preorder[1:], inorder[index + 1:])
+    #
+    #     ind = inorder.index(preorder.pop(0))
+    #     root = TreeNode(inorder[ind])
+    #     root.left = self.buildTree(preorder, inorder[0:ind])
+    #     root.right = self.buildTree(preorder, inorder[ind + 1:])
     #     return root
